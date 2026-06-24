@@ -1,0 +1,17 @@
+[
+  {
+    "title": "24/7 Customer Support",
+    "description": "We promise to respond to all customer inquiries within 2 hours",
+    "status": "kept"
+  },
+  {
+    "title": "Quality Guarantee",
+    "description": "Every product meets our strict quality standards before shipping",
+    "status": "kept"
+  },
+  {
+    "title": "Fast Delivery",
+    "description": "Free shipping on all orders over $50",
+    "status": "broken"
+  }
+]

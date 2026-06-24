@@ -1,0 +1,81 @@
+/* Global styles - NOT a CSS module */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #d946a6;
+  --primary-light: #ec4899;
+  --primary-dark: #be185d;
+  --success: #10b981;
+  --danger: #ef4444;
+  --bg-light: #faf8f6;
+  --bg-darker: #f3f0ed;
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  --border: #e5e0db;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: linear-gradient(135deg, var(--bg-light) 0%, #fff9f7 100%);
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d946a6;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #be185d;
+}
+
+::selection {
+  background: #d946a6;
+  color: white;
+}
+
+::-moz-selection {
+  background: #d946a6;
+  color: white;
+}
+
+:focus {
+  outline: 2px solid #d946a6;
+  outline-offset: 2px;
+}
+
+button:focus,
+a:focus {
+  outline: 2px solid #d946a6;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

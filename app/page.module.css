@@ -1,0 +1,389 @@
+/* ORCHID WEBSITE COMPONENT STYLES - CSS Module */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ===== HEADER ===== */
+
+.header {
+  text-align: center;
+  padding: 80px 20px 60px;
+  background: linear-gradient(180deg, rgba(217, 70, 166, 0.08) 0%, transparent 100%);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 60px;
+}
+
+.headerContent {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: var(--text-light);
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.tagline {
+  font-size: 1rem;
+  color: var(--text-light);
+  font-style: italic;
+}
+
+/* ===== SECTIONS ===== */
+
+.section {
+  margin-bottom: 80px;
+  padding: 40px 0;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: var(--text-dark);
+  position: relative;
+  padding-bottom: 16px;
+}
+
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--primary-light));
+  border-radius: 2px;
+}
+
+/* ===== PROMISE PINS ===== */
+
+.pinsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+  margin-bottom: 40px;
+}
+
+.pinContainer {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.pinContainer:hover {
+  border-color: var(--primary);
+  box-shadow: 0 8px 24px rgba(217, 70, 166, 0.15);
+  transform: translateY(-4px);
+}
+
+.pinContainer.pinIntact {
+  --pin-color: var(--success);
+}
+
+.pinContainer.pinBroken {
+  --pin-color: var(--danger);
+  background: rgba(239, 68, 68, 0.02);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.pinVisual {
+  margin-bottom: 24px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pinSVG {
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
+}
+
+.pinHead {
+  fill: var(--primary);
+  transition: fill 0.4s ease;
+}
+
+.pinShaft {
+  stroke: var(--primary);
+  stroke-linecap: round;
+  transition: stroke 0.4s ease;
+}
+
+.pinShaftBroken {
+  stroke: var(--danger);
+  stroke-linecap: round;
+  animation: shatter 0.6s ease-out;
+}
+
+.crackZone {
+  stroke: var(--danger);
+  opacity: 0.6;
+  animation: crack 0.6s ease-out;
+}
+
+.statusGood {
+  stroke: var(--success);
+  animation: pulse 2s infinite;
+}
+
+.statusBad {
+  stroke: var(--danger);
+  animation: shake 0.4s ease-out;
+}
+
+@keyframes shatter {
+  0% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(8px) rotate(15deg);
+  }
+}
+
+@keyframes crack {
+  0% {
+    r: 0;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    r: 8;
+    opacity: 0.3;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.5;
+    r: 20;
+  }
+  50% {
+    opacity: 1;
+    r: 24;
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+.pinContent {
+  flex: 1;
+  margin-bottom: 20px;
+}
+
+.pinTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-dark);
+}
+
+.pinStatus {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+  color: var(--primary);
+}
+
+.pinContainer.pinBroken .pinStatus {
+  color: var(--danger);
+}
+
+.pinDescription {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+.toggleButton {
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  border: 1px solid var(--border);
+  background: var(--bg-darker);
+  color: var(--text-dark);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.toggleButton:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* ===== CONTENT CARDS ===== */
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px;
+}
+
+.card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.card.announcement {
+  border-left: 4px solid #f59e0b;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.02) 0%, transparent 100%);
+}
+
+.card.blog {
+  border-left: 4px solid var(--primary);
+  background: linear-gradient(135deg, rgba(217, 70, 166, 0.02) 0%, transparent 100%);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  gap: 12px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--bg-darker);
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-dark);
+}
+
+.card.announcement .badge {
+  background: rgba(245, 158, 11, 0.1);
+  color: #92400e;
+}
+
+.date {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  white-space: nowrap;
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--text-dark);
+  line-height: 1.4;
+}
+
+.cardExcerpt {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  margin-bottom: 16px;
+  flex: 1;
+  line-height: 1.6;
+}
+
+.readMore {
+  align-self: flex-start;
+  padding: 6px 12px;
+  font-size: 0.875rem;
+  border: none;
+  background: transparent;
+  color: var(--primary);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.readMore:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+/* ===== FOOTER ===== */
+
+.footer {
+  text-align: center;
+  padding: 40px 20px;
+  border-top: 1px solid var(--border);
+  color: var(--text-light);
+  font-size: 0.9rem;
+  margin-top: 60px;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
+
+  .pinsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .header {
+    padding: 60px 20px 40px;
+    margin-bottom: 40px;
+  }
+}
