@@ -28,3 +28,22 @@
     }
   }
 ]
+
+[
+    {
+        "id": 1,
+        "title": "test post",
+        "smallDescription": "In today's world, trust is more valuable than ever...",
+        "description": "Discover why making promises visible changes everything...",
+        "date": "2026-06-25",
+        "tags": [
+            "EXAMPLE",
+            "PLACEHOLDERt"
+        ],
+        "body": {
+            "intro": "Hello! I wanted to test out the new Blogpost here ** and its so good! like i can make shit blue:'with this!'",
+            "sections": [],
+            "conclusion": ""
+        }
+    }
+]⏎
