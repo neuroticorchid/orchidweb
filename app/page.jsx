@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import styles from './page.module.css';
 
 export default function Home() {
@@ -99,7 +100,13 @@ export default function Home() {
       <header className={styles.header}>
         <div className={styles.headerContent}>
           <div className={styles.logo}>
-            <span className={styles.orchidIcon}>🌸</span>
+            <Image 
+              src="/image.png" 
+              alt="Orchid's Hub Logo"
+              width={40}
+              height={40}
+              className={styles.logoImage}
+            />
             <h1>Orchid's Hub</h1>
           </div>
           <div className={styles.searchBar}>
