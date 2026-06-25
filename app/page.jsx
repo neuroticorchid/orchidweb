@@ -10,6 +10,7 @@ export default function Home() {
   const [blogs, setBlogs] = useState([]);
   const [activeTab, setActiveTab] = useState('home');
   const [selectedBlog, setSelectedBlog] = useState(null);
+  const [selectedNews, setSelectedNews] = useState(null);
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
@@ -95,6 +96,66 @@ export default function Home() {
     </div>
   );
 
+  const NewsExpandedView = ({ announcement }) => (
+    <div className={styles.newsExpandedOverlay}>
+      <div className={styles.newsExpandedContainer}>
+        <button 
+          className={styles.closeBtn}
+          onClick={() => setSelectedNews(null)}
+        >
+          ✕
+        </button>
+        
+        <div className={styles.newsHeader}>
+          <h1>{announcement.title}</h1>
+          <p className={styles.newsDate}>{new Date(announcement.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} | {announcement.source || 'Orchid'}</p>
+          {announcement.tags && (
+            <div className={styles.tags}>
+              {announcement.tags.map(tag => (
+                <span key={tag} className={styles.tag}>{tag}</span>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <p className={styles.newsDescription}>{announcement.excerpt}</p>
+
+        <div className={styles.newsContent}>
+          {announcement.content && (
+            <div className={styles.section}>
+              <p dangerouslySetInnerHTML={{ __html: renderRichText(announcement.content) }}></p>
+            </div>
+          )}
+
+          {announcement.sections?.map((section, idx) => (
+            <div key={idx} className={styles.section}>
+              {section.title && <h2>{section.title}</h2>}
+              <p dangerouslySetInnerHTML={{ __html: renderRichText(section.content) }}></p>
+              {section.quotes?.map((quote, qIdx) => (
+                <blockquote key={qIdx} className={styles.quote}>
+                  &gt; {quote}
+                </blockquote>
+              ))}
+            </div>
+          ))}
+
+          {announcement.editorial && (
+            <div className={styles.editorial}>
+              <h3>Editorial Note</h3>
+              <p dangerouslySetInnerHTML={{ __html: renderRichText(announcement.editorial) }}></p>
+            </div>
+          )}
+
+          {announcement.author && (
+            <div className={styles.author}>
+              <p><strong>Written by:</strong> {announcement.author}</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div className={`${styles.container} ${darkMode ? styles.darkMode : ''}`}>
       {/* Header */}
@@ -151,7 +212,11 @@ export default function Home() {
               <h2 className={styles.sectionTitle}>News & Announcements</h2>
               <div className={styles.newsGrid}>
                 {announcements.map((announcement, idx) => (
-                  <div key={idx} className={styles.newsCard}>
+                  <div 
+                    key={idx} 
+                    className={styles.newsCard}
+                    onClick={() => setSelectedNews(announcement)}
+                  >
                     {announcement.tags && (
                       <div className={styles.cardTags}>
                         {announcement.tags.map(tag => (
@@ -317,6 +382,9 @@ export default function Home() {
 
       {/* Blog Expanded View */}
       {selectedBlog && <BlogExpandedView blog={selectedBlog} />}
+
+      {/* News Expanded View */}
+      {selectedNews && <NewsExpandedView announcement={selectedNews} />}
     </div>
   );
 }
