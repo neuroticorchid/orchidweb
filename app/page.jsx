@@ -10,6 +10,7 @@ export default function Home() {
   const [blogs, setBlogs] = useState([]);
   const [activeTab, setActiveTab] = useState('home');
   const [selectedBlog, setSelectedBlog] = useState(null);
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     // Load data from public/data
@@ -95,7 +96,7 @@ export default function Home() {
   );
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${darkMode ? styles.darkMode : ''}`}>
       {/* Header */}
       <header className={styles.header}>
         <div className={styles.headerContent}>
@@ -120,27 +121,34 @@ export default function Home() {
       {/* Main Content */}
       <main className={styles.main}>
         {activeTab === 'home' && (
-          <>
-            {/* Latest Promise Pins */}
-            <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>Latest Promise Pins!</h2>
-              <div className={styles.pinsGrid}>
-                {pins.map((pin, idx) => (
-                  <div key={idx} className={styles.pinCard}>
-                    <div className={styles.pinBadge}>{pin.status === 'kept' ? '✓' : '✗'} {pin.title} pinned this!</div>
-                    <div className={styles.pinContent}>
-                      <h3>{pin.title}</h3>
-                      <p>{pin.description}</p>
-                    </div>
-                    <div className={`${styles.pinIcon} ${pin.status === 'kept' ? styles.kept : styles.broken}`}></div>
-                  </div>
-                ))}
-              </div>
-            </section>
+          <div className={styles.welcomeSection}>
+            <h2 className={styles.welcomeTitle}>Welcome, Visitor!</h2>
+            <p className={styles.welcomeText}>Explore Orchid's Hub - your gateway to promises, news, and more!</p>
+          </div>
+        )}
 
-            {/* Latest News (Announcements) */}
+        {activeTab === 'pins' && (
+          <section className={styles.section}>
+            <h2 className={styles.sectionTitle}>Promise Pins</h2>
+            <div className={styles.pinsGrid}>
+              {pins.map((pin, idx) => (
+                <div key={idx} className={styles.pinCard}>
+                  <div className={styles.pinBadge}>{pin.status === 'kept' ? '✓' : '✗'} {pin.title} pinned this!</div>
+                  <div className={styles.pinContent}>
+                    <h3>{pin.title}</h3>
+                    <p>{pin.description}</p>
+                  </div>
+                  <div className={`${styles.pinIcon} ${pin.status === 'kept' ? styles.kept : styles.broken}`}></div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {activeTab === 'news' && (
+          <>
             <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>Latest News</h2>
+              <h2 className={styles.sectionTitle}>News & Announcements</h2>
               <div className={styles.newsGrid}>
                 {announcements.map((announcement, idx) => (
                   <div key={idx} className={styles.newsCard}>
@@ -159,107 +167,151 @@ export default function Home() {
                 ))}
               </div>
             </section>
+
+            <section className={styles.section}>
+              <h2 className={styles.sectionTitle}>Blog Posts</h2>
+              <div className={styles.blogsGrid}>
+                {blogs.map((blog, idx) => (
+                  <div 
+                    key={idx} 
+                    className={styles.blogCard}
+                    onClick={() => setSelectedBlog(blog)}
+                  >
+                    <h3>{blog.title}</h3>
+                    <p className={styles.blogSmallDesc}>{blog.smallDescription}</p>
+                    <p className={styles.blogDate}>{new Date(blog.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                    <button className={styles.readMore}>→</button>
+                  </div>
+                ))}
+              </div>
+            </section>
           </>
         )}
 
-        {activeTab === 'pins' && (
+        {activeTab === 'links' && (
           <section className={styles.section}>
-            <h2 className={styles.sectionTitle}>All Promise Pins</h2>
-            <div className={styles.pinsGrid}>
-              {pins.map((pin, idx) => (
-                <div key={idx} className={styles.pinCard}>
-                  <div className={styles.pinBadge}>{pin.status === 'kept' ? '✓' : '✗'} {pin.title} pinned this!</div>
-                  <div className={styles.pinContent}>
-                    <h3>{pin.title}</h3>
-                    <p>{pin.description}</p>
-                  </div>
-                  <div className={`${styles.pinIcon} ${pin.status === 'kept' ? styles.kept : styles.broken}`}></div>
-                </div>
-              ))}
+            <h2 className={styles.sectionTitle}>Links</h2>
+            <p className={styles.linksDescription}>This channel is all links, yes. All links! This includes the official Twitch and Youtube channels for Orchid, MVP SMP, and many, many more here!</p>
+            
+            <div className={styles.linksGrid}>
+              <div className={styles.linkCard}>
+                <div className={styles.linkIcon}>💬</div>
+                <h3>Discord Server</h3>
+                <p>Join our community</p>
+                <a href="https://discord.gg/k9jhbe87Hv" target="_blank" rel="noopener noreferrer" className={styles.linkButton}>
+                  discord.gg/k9jhbe87Hv
+                </a>
+              </div>
+
+              <div className={styles.linkCard}>
+                <div className={styles.linkIcon}>📺</div>
+                <h3>YouTube</h3>
+                <p>Watch neurotic_orchid streams</p>
+                <a href="https://www.youtube.com/@neurotic_orchid" target="_blank" rel="noopener noreferrer" className={styles.linkButton}>
+                  Visit Channel
+                </a>
+              </div>
+
+              <div className={styles.linkCard}>
+                <div className={styles.linkIcon}>🎮</div>
+                <h3>Twitch</h3>
+                <p>Live streams with neurotic_orchid</p>
+                <a href="https://www.twitch.tv/neurotic_orchid" target="_blank" rel="noopener noreferrer" className={styles.linkButton}>
+                  Visit Channel
+                </a>
+              </div>
             </div>
           </section>
         )}
 
-        {activeTab === 'news' && (
+        {activeTab === 'settings' && (
           <section className={styles.section}>
-            <h2 className={styles.sectionTitle}>News & Announcements</h2>
-            <div className={styles.newsGrid}>
-              {announcements.map((announcement, idx) => (
-                <div key={idx} className={styles.newsCard}>
-                  {announcement.tags && (
-                    <div className={styles.cardTags}>
-                      {announcement.tags.map(tag => (
-                        <span key={tag} className={styles.cardTag}>{tag}</span>
-                      ))}
-                    </div>
-                  )}
-                  <h3>{announcement.title}</h3>
-                  <p className={styles.newsDate}>{new Date(announcement.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} | {announcement.source || 'Orchid'}</p>
-                  <p>{announcement.excerpt}</p>
-                  <button className={styles.readMore}>→</button>
+            <h2 className={styles.sectionTitle}>Settings</h2>
+            
+            <div className={styles.settingsContainer}>
+              <div className={styles.settingItem}>
+                <div className={styles.settingLabel}>
+                  <span>🌙 Dark Mode</span>
                 </div>
-              ))}
-            </div>
-          </section>
-        )}
+                <label className={styles.toggle}>
+                  <input 
+                    type="checkbox" 
+                    checked={darkMode}
+                    onChange={() => setDarkMode(!darkMode)}
+                  />
+                  <span className={styles.toggleSlider}></span>
+                </label>
+              </div>
 
-        {activeTab === 'blog' && (
-          <section className={styles.section}>
-            <h2 className={styles.sectionTitle}>Blog Posts</h2>
-            <div className={styles.blogsGrid}>
-              {blogs.map((blog, idx) => (
-                <div 
-                  key={idx} 
-                  className={styles.blogCard}
-                  onClick={() => setSelectedBlog(blog)}
-                >
-                  <h3>{blog.title}</h3>
-                  <p className={styles.blogSmallDesc}>{blog.smallDescription}</p>
-                  <p className={styles.blogDate}>{new Date(blog.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-                  <button className={styles.readMore}>→</button>
+              <div className={styles.settingItem}>
+                <div className={styles.settingLabel}>
+                  <span>♿ Accessibility Features</span>
                 </div>
-              ))}
+                <p className={styles.settingDescription}>Enhanced text contrast, larger fonts, and screen reader support</p>
+              </div>
+
+              <div className={styles.settingItem}>
+                <div className={styles.settingLabel}>
+                  <span>🔔 Notifications</span>
+                </div>
+                <label className={styles.toggle}>
+                  <input type="checkbox" defaultChecked />
+                  <span className={styles.toggleSlider}></span>
+                </label>
+              </div>
+
+              <div className={styles.settingItem}>
+                <div className={styles.settingLabel}>
+                  <span>🔒 Privacy</span>
+                </div>
+                <p className={styles.settingDescription}>Manage your data and privacy preferences</p>
+              </div>
             </div>
           </section>
         )}
       </main>
 
-      {/* Bottom Navigation */}
+      {/* Bottom Navigation - Floating */}
       <nav className={styles.bottomNav}>
         <button 
           className={`${styles.navBtn} ${activeTab === 'home' ? styles.active : ''}`}
           onClick={() => setActiveTab('home')}
+          title="Home"
         >
           <span className={styles.navIcon}>🏠</span>
-          <span>Home</span>
+          <span className={styles.navLabel}>Home</span>
         </button>
         <button 
           className={`${styles.navBtn} ${activeTab === 'pins' ? styles.active : ''}`}
           onClick={() => setActiveTab('pins')}
+          title="Promise Pins"
         >
           <span className={styles.navIcon}>📍</span>
-          <span>Promise Pins</span>
+          <span className={styles.navLabel}>Pins</span>
         </button>
         <button 
           className={`${styles.navBtn} ${activeTab === 'news' ? styles.active : ''}`}
           onClick={() => setActiveTab('news')}
+          title="News & Blogs"
         >
           <span className={styles.navIcon}>📰</span>
-          <span>News</span>
+          <span className={styles.navLabel}>News</span>
         </button>
         <button 
-          className={`${styles.navBtn} ${activeTab === 'blog' ? styles.active : ''}`}
-          onClick={() => setActiveTab('blog')}
+          className={`${styles.navBtn} ${activeTab === 'links' ? styles.active : ''}`}
+          onClick={() => setActiveTab('links')}
+          title="Links"
         >
-          <span className={styles.navIcon}>✏️</span>
-          <span>Links</span>
+          <span className={styles.navIcon}>🔗</span>
+          <span className={styles.navLabel}>Links</span>
         </button>
         <button 
-          className={styles.navBtn}
+          className={`${styles.navBtn} ${activeTab === 'settings' ? styles.active : ''}`}
           onClick={() => setActiveTab('settings')}
+          title="Settings"
         >
           <span className={styles.navIcon}>⚙️</span>
-          <span>Settings</span>
+          <span className={styles.navLabel}>Settings</span>
         </button>
       </nav>
 
