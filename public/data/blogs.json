@@ -1,37 +1,6 @@
 [
-  {
-    "id": 1,
-    "title": "Why Transparency Matters",
-    "smallDescription": "In today's world, trust is more valuable than ever...",
-    "description": "Discover why making promises visible changes everything about how we do business and build lasting customer relationships.",
-    "date": "2024-03-12",
-    "tags": ["transparency", "trust"],
-    "body": {
-      "intro": "In today's world, trust is more valuable than ever. Companies often make promises they can't keep, and customers are tired of it. At Orchid, we're taking a different approach.",
-      "sections": [
-        {
-          "title": "The Problem with Hidden Promises",
-          "content": "We believe in making our promises visible and tracking whether we keep them. This is the foundation of everything we do. When you can see our commitments breaking, you know we're being honest about our failures.",
-          "quotes": [
-            "Transparency isn't just a buzzword—it's the cornerstone of real trust."
-          ]
-        },
-        {
-          "title": "Our Commitment to You",
-          "content": "And when our pins stay intact, you can be confident we're **delivering on our promises**. This is blue:'not always comfortable', but it's honest. We use blue:'advanced tracking' to monitor every commitment we make.",
-          "quotes": [
-            "Trust is earned through consistent action, not empty words."
-          ]
-        }
-      ],
-      "conclusion": "Transparency creates accountability. When promises are visible, we're motivated to keep them. That's how we build underline:'a business' that actually delivers."
-    }
-  }
-]
-
-[
     {
-        "id": 2,
+        "id": 1,
         "title": "test post",
         "smallDescription": "In today's world, trust is more valuable than ever...",
         "description": "Discover why making promises visible changes everything...",
