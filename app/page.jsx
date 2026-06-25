@@ -110,7 +110,7 @@ export default function Home() {
             <h1>Orchid's Hub</h1>
           </div>
           <div className={styles.searchBar}>
-            <input type="text" placeholder="Hinted search text" />
+            <input type="text" placeholder="Search" />
             <button>🔍</button>
           </div>
           <div className={styles.profileIcon}>M</div>
